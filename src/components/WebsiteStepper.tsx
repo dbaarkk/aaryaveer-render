@@ -20,7 +20,7 @@ export default function WebsiteStepper() {
     const message = selectedType 
       ? `Hi, I'm interested in getting a ${websiteTypes.find(w => w.id === selectedType)?.label} built.`
       : "Hi, I'm interested in getting a website built.";
-    openExternalUrl(`https://api.whatsapp.com/send?phone=916263288522&text=${encodeURIComponent(message)}`);
+    openExternalUrl(`https://api.whatsapp.com/send?phone=+916263288522&text=${encodeURIComponent(message)}`);
   };
 
   const handleSovereignSites = () => {
