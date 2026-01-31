@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ExpertiseSection from "@/components/ExpertiseSection";
@@ -16,8 +17,32 @@ import { useAuth } from "@/components/AuthProvider";
 import { Download, LogIn, LogOut } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
+const projects = [
+  {
+    name: "Petalmind AI",
+    description: "An AI text-based website",
+    url: "https://petalmind.vercel.app"
+  },
+  {
+    name: "Docgenius",
+    description: "A document generator",
+    url: "https://docgenius.netlify.app"
+  },
+  {
+    name: "Kingdom of joy",
+    description: "Related to indoor amusement park",
+    url: "https://sovereigndemowork1.vercel.app"
+  },
+  {
+    name: "The Urban Auto",
+    description: "Luxury automotive detailing & services",
+    url: "https://theurbanauto.com"
+  }
+];
+
 export default function Home() {
   const { user, session } = useAuth();
+  const [workPage, setWorkPage] = useState(0);
 
   const handleDownload = async () => {
     if (!session) return;
@@ -99,39 +124,49 @@ export default function Home() {
             <h2 className="text-3xl font-medium tracking-tight">Recent Projects</h2>
           </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div 
-                whileHover={{ y: -5 }}
-                onClick={() => openExternalUrl("https://petalmind.vercel.app")}
-                data-cursor="VIEW"
-                className="select-none group aspect-[16/10] bg-zinc-900/50 border border-zinc-800 rounded-2xl flex flex-col items-center justify-center p-8 space-y-4 cursor-pointer relative overflow-hidden text-center"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center">
-                  <ExternalLink className="w-5 h-5 text-zinc-50" />
-                </div>
-                <div className="select-text">
-                  <p className="text-zinc-100 font-medium text-xl">Petalmind AI</p>
-                  <p className="text-zinc-500 text-sm mt-2">An AI text-based website</p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ y: -5 }}
-                onClick={() => openExternalUrl("https://docgenius.netlify.app")}
-                data-cursor="VIEW"
-                className="select-none group aspect-[16/10] bg-zinc-900/50 border border-zinc-800 rounded-2xl flex flex-col items-center justify-center p-8 space-y-4 cursor-pointer relative overflow-hidden text-center"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center">
-                  <ExternalLink className="w-5 h-5 text-zinc-50" />
-                </div>
-                <div className="select-text">
-                  <p className="text-zinc-100 font-medium text-xl">Docgenius</p>
-                  <p className="text-zinc-500 text-sm mt-2">A document generator</p>
-                </div>
-              </motion.div>
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]">
+              {projects.slice(workPage * 2, (workPage + 1) * 2).map((project, index) => (
+                <motion.div 
+                  key={project.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  onClick={() => openExternalUrl(project.url)}
+                  data-cursor="VIEW"
+                  className="select-none group aspect-[16/10] bg-zinc-900/50 border border-zinc-800 rounded-2xl flex flex-col items-center justify-center p-8 space-y-4 cursor-pointer relative overflow-hidden text-center"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center">
+                    <ExternalLink className="w-5 h-5 text-zinc-50" />
+                  </div>
+                  <div className="select-text">
+                    <p className="text-zinc-100 font-medium text-xl">{project.name}</p>
+                    <p className="text-zinc-500 text-sm mt-2">{project.description}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
+
+            <div className="flex justify-center pt-8">
+              <Button
+                variant="ghost"
+                onClick={() => setWorkPage(prev => (prev === 0 ? 1 : 0))}
+                className="group flex flex-col items-center gap-2 text-zinc-500 hover:text-white hover:bg-transparent h-auto py-4"
+              >
+                <span className="text-xs uppercase tracking-widest font-medium transition-colors">
+                  {workPage === 0 ? "View More" : "Go Back"}
+                </span>
+                <motion.div
+                  animate={{ rotate: workPage === 0 ? 0 : 180 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ArrowDown className="w-5 h-5" />
+                </motion.div>
+              </Button>
+            </div>
+          </div>
         </section>
 
         {/* CTA Section */}

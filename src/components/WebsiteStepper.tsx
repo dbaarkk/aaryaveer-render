@@ -16,11 +16,11 @@ const websiteTypes = [
 export default function WebsiteStepper() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
 
-  const handleWhatsApp = () => {
+    const handleWhatsApp = () => {
     const message = selectedType 
       ? `Hi, I'm interested in getting a ${websiteTypes.find(w => w.id === selectedType)?.label} built.`
       : "Hi, I'm interested in getting a website built.";
-    openExternalUrl(`https://wa.me/6263288522?text=${encodeURIComponent(message)}`);
+    openExternalUrl(`https://wa.me/916263288522?text=${encodeURIComponent(message)}`);
   };
 
   const handleSovereignSites = () => {
