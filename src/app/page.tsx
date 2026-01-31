@@ -30,7 +30,7 @@ const projects = [
   },
   {
     name: "Kingdom of joy",
-    description: "Related to indoor amusement park",
+    description: "Indoor amusement park",
     url: "https://sovereigndemowork1.vercel.app"
   },
   {
@@ -149,21 +149,22 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="flex justify-center pt-8">
+            <div className="flex justify-center pt-12">
               <Button
                 variant="ghost"
                 onClick={() => setWorkPage(prev => (prev === 0 ? 1 : 0))}
-                className="group flex flex-col items-center gap-2 text-zinc-500 hover:text-white hover:bg-transparent h-auto py-4"
+                className="group flex flex-col items-center gap-3 text-zinc-400 hover:text-white hover:bg-transparent h-auto py-6"
               >
-                <span className="text-xs uppercase tracking-widest font-medium transition-colors">
-                  {workPage === 0 ? "View More" : "Go Back"}
-                </span>
                 <motion.div
                   animate={{ rotate: workPage === 0 ? 0 : 180 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                  className="w-14 h-14 rounded-full border border-zinc-800 flex items-center justify-center group-hover:border-white transition-colors"
                 >
-                  <ArrowDown className="w-5 h-5" />
+                  <ArrowDown className="w-6 h-6" />
                 </motion.div>
+                <span className="text-xs uppercase tracking-[0.2em] font-bold">
+                  {workPage === 0 ? "View More" : "Go Back"}
+                </span>
               </Button>
             </div>
           </div>
