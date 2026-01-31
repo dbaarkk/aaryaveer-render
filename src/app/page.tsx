@@ -210,25 +210,6 @@ export default function Home() {
           <p className="text-zinc-500 text-sm">
             © {new Date().getFullYear()} Aaryaveer Sharma. All rights reserved.
           </p>
-          <div className="flex gap-4">
-            {user ? (
-              <button
-                onClick={() => supabase.auth.signOut()}
-                className="text-zinc-600 hover:text-white text-xs transition-colors flex items-center gap-1.5"
-              >
-                <LogOut className="w-3 h-3" />
-                Sign Out ({user.email})
-              </button>
-            ) : (
-              <Link
-                href="/login"
-                className="text-zinc-600 hover:text-white text-xs transition-colors flex items-center gap-1.5"
-              >
-                <LogIn className="w-3 h-3" />
-                Admin
-              </Link>
-            )}
-          </div>
         </footer>
       </main>
     </div>
