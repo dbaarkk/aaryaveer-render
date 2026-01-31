@@ -49,12 +49,12 @@ export default function ContactSection() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="w-full md:w-auto"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => openExternalUrl("https://wa.me/916263288522")}
-                  className="isolate select-none cursor-pointer w-full md:w-auto bg-zinc-900 border border-zinc-800 text-white hover:bg-zinc-800 text-xl md:text-2xl px-10 py-10 rounded-[2rem] flex items-center justify-between md:justify-center gap-8 group transition-all duration-300"
-                >
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => openExternalUrl("https://api.whatsapp.com/send?phone=916263288522")}
+                    className="isolate select-none cursor-pointer w-full md:w-auto bg-zinc-900 border border-zinc-800 text-white hover:bg-zinc-800 text-xl md:text-2xl px-10 py-10 rounded-[2rem] flex items-center justify-between md:justify-center gap-8 group transition-all duration-300"
+                  >
                   <span className="select-text font-black uppercase tracking-tighter block">WhatsApp</span>
                   <div className="bg-white text-black p-3 rounded-full group-hover:scale-110 transition-transform select-none">
                     <ArrowUpRight className="w-6 h-6 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
