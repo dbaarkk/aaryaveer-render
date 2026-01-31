@@ -6,10 +6,14 @@ import path from "path";
 import { Readable } from "stream";
 
 export async function GET(req: NextRequest) {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseServiceRoleKey) {
+    return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
   const authHeader = req.headers.get("Authorization");
   const token = authHeader?.split(" ")[1];
