@@ -20,8 +20,8 @@ import { supabase } from "@/lib/supabase";
 const projects = [
   {
     name: "Petalmind AI",
-    description: "An AI text-based website",
-    url: "https://petalmind.vercel.app"
+    description: "Best news website for india",
+    url: "https://petalmind.in"
   },
   {
     name: "Docgenius",
