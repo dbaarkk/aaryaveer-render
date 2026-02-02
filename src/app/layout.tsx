@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Aaryaveer Sharma | Portfolio",
   description: "Professional website developer portfolio",
   icons: {
-    icon: "/logo.png",
+    icon: "/favicon.ico.png",
     shortcut: "/logo.png",
     apple: "/logo.png",
   },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: "Professional website developer portfolio",
     images: [
       {
-        url: "/logo.png",
+        url: "/favicon.ico.png",
         width: 800,
         height: 600,
         alt: "Aaryaveer Sharma Portfolio",
