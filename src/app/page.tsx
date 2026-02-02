@@ -19,7 +19,7 @@ import { supabase } from "@/lib/supabase";
 
 const projects = [
   {
-    name: "Petalmind AI",
+    name: "Petalmind",
     description: "Best news website for india",
     url: "https://petalmind.in"
   },
